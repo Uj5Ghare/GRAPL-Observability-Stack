@@ -1,0 +1,118 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  external_labels:
+      monitor: 'on-prem'
+
+rule_files:
+  - ./alertmanager.yml
+alerting:
+  alertmanagers:
+  - scheme: http
+    static_configs:
+    - targets:
+      - "alertmanager:9093"
+
+scrape_configs:
+
+# ON-PREM-SERVER
+  - job_name: 'prometheus'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['prometheus:9090']
+
+  - job_name: 'on-prem-server'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          host: on-prem-server
+          project0: on-prem
+
+# ON-PREM-N8N
+  - job_name: 'on-prem-n8n'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<on-prem-n8n-ip>:9100']
+        labels:
+          env: prod
+          service: n8n
+          project0: on-prem
+
+# ON-PREM-API
+  - job_name: 'on-prem-api-prod'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<on-prem-api-ip>:9100']
+        labels:
+          env: prod
+          service: on-prem-api
+          app: on-prem-api
+          project1: on-prem
+
+# ON-PREM-DB
+  - job_name: 'on-prem-db-prod'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<on-prem-db-ip>:9100']
+        labels: 
+          env: prod
+          service: on-prem-db
+          app: on-prem-db
+          project1: on-prem
+
+# ON-PREM-ADMIN
+  - job_name: 'on-prem-admin-prod'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<on-prem-admin-ip>:9100']
+        labels:
+          env: prod
+          service: on-prem-admin
+          app: on-prem-admin
+          project1: on-prem
+
+# REMOTE-API
+  - job_name: 'remote-api-prod'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<remote-api-ip>:9100']
+        labels:
+          env: prod
+          service: remote-api
+          app: remote-api
+          project1: remote
+
+# REMOTE-DB
+  - job_name: 'remote-db-prod'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<remote-db-ip>:9100']
+        labels: 
+          env: prod
+          service: remote-db
+          app: remote-db
+          project1: remote
+
+# REMOTE-ADMIN
+  - job_name: 'remote-admin-prod'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['<remote-admin-ip>:9100']
+        labels:
+          env: prod
+          service: remote-admin
+          app: remote-admin
+          project1: remote
+
+# MONGODB-EXPORTER
+  - job_name: 'mongodb-exporter'
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['184.73.43.135:9216']
+        labels:
+          env: pre-prod
+          service: mongodb
+          app: mongo
+
+
