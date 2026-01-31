@@ -1,8 +1,8 @@
 # Grafana secrets (credentials)
-grafana/config.monitoring
+# grafana/config.monitoring
 
-# Alertmanager webhooks (contain secrets)
-alertmanager/slack_url_project*
+# # Alertmanager webhooks (contain secrets)
+# alertmanager/slack_url_project*
 
 # OS / Editor
 .DS_Store
