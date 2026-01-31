@@ -1,0 +1,17 @@
+# Grafana secrets (credentials)
+grafana/config.monitoring
+
+# Alertmanager webhooks (contain secrets)
+alertmanager/slack_url_project*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# Misc
+old.md
+*.log
