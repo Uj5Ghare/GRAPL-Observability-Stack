@@ -1,0 +1,103 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: "project0"
+  routes:
+    - match:
+        project0: "project0"
+      receiver: "project0"
+    - match:
+        project1: "project1"
+      receiver: "project1"
+    - match:
+        project2: "project2"
+      receiver: "project2"
+    - match:
+        project3: "project3"
+      receiver: "project3"
+    - match:
+        project4: "project4"
+      receiver: "project4"
+      continue: true
+      
+receivers:
+  - name: "project0"
+    slack_configs:
+      - send_resolved: true
+        api_url_file: "/etc/alertmanager/slack_url_project0"
+        channel: "#project0-alerts"
+        username: "ujwalp"
+        icon_url: https://avatars3.githubusercontent.com/u/3380462
+        text: >-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+
+  - name: "project1"
+    slack_configs:
+      - send_resolved: true
+        api_url_file: "/etc/alertmanager/slack_url_project1"
+        channel: "#project1-alerts"
+        username: "ujwalp"
+        icon_url: https://avatars3.githubusercontent.com/u/3380462
+        text: >-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+
+  - name: "project2"
+    slack_configs:
+      - send_resolved: true
+        api_url_file: "/etc/alertmanager/slack_url_project2"
+        channel: "#project2-alerts"
+        username: "ujwalp"
+        icon_url: https://avatars3.githubusercontent.com/u/3380462
+        text: >-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+
+  - name: "project3"
+    slack_configs:
+      - send_resolved: true
+        api_url_file: "/etc/alertmanager/slack_url_project3"
+        channel: "#project3-alerts"
+        username: "ujwalp"
+        icon_url: https://avatars3.githubusercontent.com/u/3380462
+        text: >-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+
+  - name: "project4"
+    slack_configs:
+      - send_resolved: true
+        api_url_file: "/etc/alertmanager/slack_url_project4"
+        channel: "#project4-alerts"
+        username: "ujwalp"
+        icon_url: https://avatars3.githubusercontent.com/u/3380462
+        text: >-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
