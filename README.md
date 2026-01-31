@@ -1,4 +1,4 @@
-# 🎯 DevOps Monitoring Stack
+# 🎯 GRAPL Observability Stack
 
 > **One stack to watch them all.**  
 > Metrics, logs, dashboards, and Slack alerts—on your own servers.
