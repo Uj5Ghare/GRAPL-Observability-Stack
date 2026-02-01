@@ -1,5 +1,7 @@
 # 🎯 GRAPL Observability Stack
 
+![GRAPL Architecture](GRAPL-Arch.png)
+
 > **One stack to watch them all.**  
 > Metrics, logs, dashboards, and Slack alerts—on your own servers.
 
@@ -60,7 +62,9 @@ A complete **on-premises monitoring and observability stack**. Collect metrics f
 
 **In one sentence:** Remote servers send **metrics** (via Node Exporter) and **logs** (via Fluent Bit) to your monitoring server; Prometheus and Loki store them; Grafana shows dashboards; Alertmanager sends alerts to Slack.
 
-### Flow diagram (Mermaid)
+
+
+### Flow diagram
 
 ```mermaid
 flowchart LR
@@ -88,30 +92,6 @@ flowchart LR
     N --> G
     N --> P
 ```
-
-### Simple flow (text)
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│  📡 REMOTE SERVERS (API, DB, Admin, N8N, etc.)                        │
-│     Node Exporter (metrics)  ──────┐                                 │
-│     Fluent Bit (logs)        ──────┼─────┐                           │
-└───────────────────────────────────┼─────┼───────────────────────────┘
-                                    │     │
-                                    ▼     ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│  🖥️ MONITORING SERVER (this repo + Docker)                           │
-│                                                                      │
-│   Prometheus ◄── scrapes metrics  │  Loki ◄── receives logs          │
-│         │                         │    │                             │
-│         ├──► Alertmanager ────────┼──► Slack                         │
-│         │                         │                                   │
-│         └──► Grafana ◄────────────┘  (dashboards + log search)        │
-│                    ▲                                                  │
-│              Nginx (optional: pretty URLs)                            │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
 ---
 
 ## ✅ Prerequisites
